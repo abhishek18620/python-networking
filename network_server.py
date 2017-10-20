@@ -19,7 +19,7 @@ class SocketThread(QtCore.QThread):
             self.error.emit(self.socket.error())
             return
         #slot seems to get called directly ,maybe source of error later
-        self.socket.readyRead.connect(self.readyRead)
+        self.socket.readyRead.connect(self.readRead)
         self.socket.disconnected.connect(self.disconnected)
 
         print('{0} Client connected'.format(self.socket_descriptor))
@@ -43,7 +43,7 @@ class NetworkServer(QtNetwork.QTcpServer):
         #standard practise with pyqt
         super(NetworkServer,self).__init__(parent)
         #self.newConnection.connect(self.accept_connection)
-        self.listen(port=1024)
+        self.listen(port=54545)
         #checking if listening or not
         # print("if listening : {0}".format( self.isListening())
 
